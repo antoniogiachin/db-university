@@ -9,3 +9,5 @@ Modellizzare la struttura di una database per memorizzare tutti i dati riguardan
 - ogni Studente è iscritto ad un solo Corso di Laurea;
 - ogni Studente può iscriversi a più appelli di Esame;
 - per ogni appello d’Esame a cui lo Studente ha partecipato, è necessario memorizzare il voto ottenuto, anche se non sufficiente
+
+### Query esercizio 22 Marzo
