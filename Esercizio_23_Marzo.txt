@@ -89,3 +89,15 @@
 	ORDER BY `nome_docente` ASC;
 	
 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
+
+SELECT `exam_student`.`exam_id` AS 'id_esame', `exam_student`.`student_id` AS 'id_studente', `exam_student`.`vote` AS 'voto', `students`.`name` AS 'nome', `students`.`surname` AS 'cognome', `courses`.`id` AS 'corso_id'
+FROM `exam_student`
+JOIN `students`
+ON `exam_student`.`student_id` = `students`.`id`
+JOIN `exams`
+ON `exam_student`.`exam_id` = `exams`.`id`
+JOIN `courses`
+ON `exams`.`course_id` = `courses`.`id`  
+ORDER BY `nome` ASC, `corso_id`;
+GROUP BY `tentativi`;
+
