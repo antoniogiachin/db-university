@@ -42,7 +42,25 @@
 	WHERE `departments`.`name` LIKE '%Neuroscienze%';
 	
 3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+	
+	SELECT `teachers`.`name` AS 'nome_inegnante', `teachers`.`surname` AS 'cognome_insegnante', `courses`.`name` AS 'nome_corso', `courses`.`period` AS 'semestre'
+	FROM `teachers` 
+	JOIN `course_teacher`
+	ON `course_teacher`.`teacher_id` = `teachers`.`id`
+	JOIN `courses`
+	ON `courses`.`id` = `course_teacher`.`course_id`
+	WHERE `teachers`.`id` = 44;
+
 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
+
+	SELECT `students`.`name` AS 'nome', `students`.`surname` AS 'cognome', `degrees`.`name` AS 'corso_di_laurea', `departments`.`name` AS 'dipartimento'
+	FROM `students` 
+	JOIN `degrees`
+	ON `students`.`degree_id` = `degrees`.`id`
+	JOIN `departments`
+	ON `degrees`.`department_id` = `departments`.`id`
+	ORDER BY `nome` ASC;
+	
 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
-6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
+6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54) // Bisogna utilizzare una clausola che e' il dinstinct (non vista a lezione), potremmo avere dei duplicati, controlliamo l'output di phpmyadmin e controlliamo che non ci siano prof duplicati. Basta aggiungere dinstinct dopo al select
 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
