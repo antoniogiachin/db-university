@@ -101,3 +101,16 @@ ON `exams`.`course_id` = `courses`.`id`
 ORDER BY `nome` ASC, `corso_id`;
 GROUP BY `tentativi`;
 
+Correzione BONUS in classe ->
+SELECT COUNT(`exam_student`.`exam_id`) AS 'tentativi', MAX(`exam_student`.`vote`) AS 'voto_massimo', `students`.`name` AS 'nome_studente', `students`.`surname` AS 'cognome_studente', `courses`.`name` AS 'corso'
+FROM `exam_student`
+JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id`
+JOIN `courses` ON `exams`.`course_id` = `courses`.`id`
+JOIN `students` ON `exam_student` .`student_id` = `students`.`id`
+GROUP BY `students`.`id` , `courses`.`id`
+HAVING `voto_massimo` >= 18;
+
+Conteggio delle prove sostenute da ogni studente per calcolo tentativi, ci siamo segnati il voto massimo preso e verificare che sia maggiore uguale a 18. La clausola HAVING fa lo stesso lavoro di WHERE ma solo nei casi in cui ci sia la GROUP BY.
+
+
+
